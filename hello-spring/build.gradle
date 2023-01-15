@@ -1,0 +1,38 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.7'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'hello'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+// 내가 선택한 라이브러리들
+// External libraries에 자동으로 내가 선택한 라이브러리들과 관련된 것들 자동으로 가져옴
+// 웹서버 Tomcat 자동으로 불러와짐
+// 우측 상단의 gradle 누르면 library들간의 상관관계 볼 수 있음
+
+// boot starter web
+// tomcat, mvc
+
+// boot - starter - logging 라이브러리 - logback
+// System.out.println() 쓰지말고 log 쓰기
+// log 써야 관리가 됌
+
+// test 라이브러리
+// junit 5.~ 버전씀
+//
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform() // test는 Junit 씀
+}
