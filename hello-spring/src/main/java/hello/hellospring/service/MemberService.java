@@ -14,7 +14,7 @@ public class MemberService {
     // 회원 서비스를 만드려면 멤버 repository가 있어야함
 
     // * 주의
-    // private final MemberRepository memberRepository = new MemberRepository();
+    // private final MemberRepository memberRepository = new MemoryMemberRepository();
     // main과 test를 같은 memberRepository로 설정하기 위해
     // 다음과 같이 생성자를 만들어줌
     private final MemberRepository memberRepository;

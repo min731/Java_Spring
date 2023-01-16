@@ -13,6 +13,7 @@ import java.util.Optional;
 // class에서 모든 @Test 돌릴 시 Test 하는 순서 중요함!
 // 각 메서드별로 Data를 지워주어야함
 // Test는 서로 의존관계없이 설게가 되어야함
+// 각 Test는 독립적이여야함
 // Test를 먼저 만들고 구현클래스륾 만드는 방법도 있음 (Test주도 개발: TDD)
 
 class MemoryMemberRepositoryTest {
@@ -80,10 +81,9 @@ class MemoryMemberRepositoryTest {
         // 녹색불 뜨면 ok
 
         // member2로 바꾸어 보면
-        // Member result=
-        // repository.findByName("test_정민1").get();
+        //Member result= repository.findByName("test_정민1").get();
 
-        // .assertThat(member2).isEqualTo(result);
+        //Assertions.assertThat(member2).isEqualTo(result);
         // 붉은색
 
     }

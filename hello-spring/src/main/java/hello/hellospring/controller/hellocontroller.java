@@ -42,7 +42,8 @@ public class hellocontroller {
     public Hello helloApi(@RequestParam("name") String name){
         Hello hello = new Hello();
         hello.setName(name);
-        return hello; // JsonCOnverter로 json으로 반환됌
+                      // HttpMessageConverter : 1) JsonConverter 2) StringConverter
+        return hello; // viewResolver대신에 HttpMessageConverter가 작동하여 JsonConverter가 json으로 반환됌
                       // Jackson 이나 Gson 가 객체를 json으로 바꿔줌
     }
 
