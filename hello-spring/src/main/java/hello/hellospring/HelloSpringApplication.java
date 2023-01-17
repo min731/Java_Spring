@@ -1,4 +1,6 @@
 package hello.hellospring;
+// main 실행 Application의 패키지의 스프링이 하위 패키지 전부 스캔
+// 아니면 Spring이 Component 스캔의 대상아님
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

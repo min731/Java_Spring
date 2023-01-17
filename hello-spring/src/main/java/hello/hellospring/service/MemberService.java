@@ -3,11 +3,17 @@ package hello.hellospring.service;
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 // 클래스 전부 만들고 ctrl + shift + T 하면 Test 자동으로 만들어줌!
+
+//@Service // @Controller로 하나의 빈 생성한 컨트롤러와 연결
+// 원래는 @Component 로 했음
+// @Component 는 @Service,@Controller 등 포함함
 public class MemberService {
 
     // Service 패키지는 회원가입,전체 회원 조회 등 비지니스와 관련된 것들임
@@ -21,6 +27,10 @@ public class MemberService {
     // 생성자 만드는 단축키
     // alt + insert
     // 외부에서 파라미터로 넣어주게 바꿈
+
+    //@Autowired
+    // MemberService는 MemberRepository가 필요하기 때문에
+    // 스프링 컨테이너에 MemberRepository 를 넣어줌
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }

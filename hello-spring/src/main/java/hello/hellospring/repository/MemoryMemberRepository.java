@@ -1,10 +1,19 @@
 package hello.hellospring.repository;
 
 import hello.hellospring.domain.Member;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
 // implements 후 모든 메소드 가져오기
+
+//@Repository // 리포지토리는 @Repository 해줌
+// 1. 컨트롤러를 통해 외부 요청을 받고
+// 2. 서비스에서 비즈니스로직을 만들고
+// 3. 리포지토리에서 데이터를 저장
+// * 정형화 되어있는 패턴
+
+
 public class MemoryMemberRepository implements MemberRepository {
 
     private static Map<Long,Member> store = new HashMap<>();

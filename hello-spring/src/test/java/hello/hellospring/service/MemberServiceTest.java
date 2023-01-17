@@ -26,6 +26,7 @@ class MemberServiceTest {
     // * 주의
     // main 과 test의 memberRepository가 각각 다른 인스턴스이기 때문에
     // 통합해줄 필요가 있다.
+    // => Dependency Injection (의존성 관계 주입)
 
     MemoryMemberRepository memberRepository;
 

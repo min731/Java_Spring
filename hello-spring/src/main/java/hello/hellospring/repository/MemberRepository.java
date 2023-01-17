@@ -16,3 +16,6 @@ public interface MemberRepository {
     List<Member> finALl(); // 모든 회원 리스트 반환
 
 }
+
+// 현재 메모리리포지토리 사용한다고 가정
+// 차후 다른 리포지토리로 바꿀 때 다른 코드 안건드릴 수 있는 방법이 있음
