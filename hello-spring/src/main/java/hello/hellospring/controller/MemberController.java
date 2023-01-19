@@ -4,8 +4,11 @@ import hello.hellospring.domain.Member;
 import hello.hellospring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 // 자바 컨테이너에 빈 등록하는 방법
 // 1) Component를 스캔
@@ -48,10 +51,11 @@ public class MemberController {
 
     @GetMapping("/members/new")
     public String createForm(){
+
         return "members/createMemberForm";
     }
 
-    @PostMapping("members/new")
+    @PostMapping("/members/new")
     public String create(MemberForm form){
         Member member = new Member();
         member.setName(form.getName());
@@ -59,6 +63,15 @@ public class MemberController {
         memberService.join(member);
 
         return "redirect:/"; // 회원가입 끝나면 홈으로 이동
+    }
+
+    @GetMapping("/members")
+    public String memberList(Model model){
+        List<Member> members = memberService.findMembers();
+        model.addAttribute("members",members);
+
+        return "members/memberList";
+
     }
 
 

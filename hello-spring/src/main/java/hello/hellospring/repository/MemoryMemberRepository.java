@@ -45,7 +45,7 @@ public class MemoryMemberRepository implements MemberRepository {
     @Override
     // Map인데 List로 반환하게 되어있음
     // 현업에서는 loop 돌리기 편하게 List 자주 씀
-    public List<Member> finALl() {
+    public List<Member> findAll() {
 
         // store.values : Member들임
         return new ArrayList<>(store.values());
@@ -55,4 +55,15 @@ public class MemoryMemberRepository implements MemberRepository {
 
         store.clear(); // store 비워줌
     }
+
+    // DB 바꾸기
+    // 1. h2
+    // jdbc:h2:tcp://localhost/~/test 로 접속하면 소켓으로 접근하는 것임
+    // 여러 곳에서 접근할 수 있음
+    // create table member 만듬
+    // id 와 name 만듬
+    // 자바에서 Long = h2에서 bigint
+    // id generated~ : member 만들때 id 넣지않고 만들면 알아서 id 만들어줌
+
+
 }

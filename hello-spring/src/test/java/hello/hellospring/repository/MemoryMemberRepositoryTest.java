@@ -99,7 +99,7 @@ class MemoryMemberRepositoryTest {
         member4.setName("test_정민4");
         repository.save(member4);
 
-        List<Member> result = repository.finALl();
+        List<Member> result = repository.findAll();
 
          Assertions.assertThat(result.size()).isEqualTo(2);
          // 녹색불
