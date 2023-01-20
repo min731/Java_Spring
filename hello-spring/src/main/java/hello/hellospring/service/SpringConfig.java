@@ -3,13 +3,12 @@ package hello.hellospring.service;
 //MemberController의 @Controller, 생성자의 @Autowired만 두고
 // 빌드 안될때 , 빈 설정파일 직접 만들기
 
-import hello.hellospring.repository.JdbcMemberRepository;
-import hello.hellospring.repository.MemberRepository;
-import hello.hellospring.repository.MemoryMemberRepository;
+import hello.hellospring.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 
 @Configuration
@@ -51,14 +50,33 @@ public class SpringConfig {
 
     private DataSource dataSource;
     @Autowired
-    public SpringConfig(DataSource dataSource){
+    public SpringConfig(DataSource dataSource, EntityManager em){
         this.dataSource = dataSource;
-    }
-    @Bean
-    public MemberRepository memberRepository(){
-        return new JdbcMemberRepository(dataSource);
+        this.em = em; // jpa는 em만 받으면됌
     }
 
+
+    // JdbcMemberRepository => jdbcTemplateRepository로 바꿔줌
+//    @Bean
+//    public MemberRepository memberRepository(){
+//
+//        return new JdbcMemberRepository(dataSource);
+//    }
+
+
+    // jpa로 바꿔줌
+//    @Bean
+//    public MemberRepository memberRepository(){
+//        return new JdbcTemplateMemberRepository(dataSource);
+//    }
+
+
+    private EntityManager em;
+
+    @Bean
+    public MemberRepository memberRepository(EntityManager em){
+        return new JpaMemberRepository(em);
+    }
 
 }
 // 이렇게 하면 전부 연결됌

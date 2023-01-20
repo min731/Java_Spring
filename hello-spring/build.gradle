@@ -33,9 +33,14 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	
 	// 자바는 jdbc 드라이버가 꼭 있어야함
-	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	//implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	// db가 제공하는 클라이언트가 필요함
 	runtimeOnly 'com.h2database:h2'
+
+	// JPA를 쓰기 위한 라이브러리 추가
+	// jdbc 필요없음
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
 
 }
 

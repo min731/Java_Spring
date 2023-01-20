@@ -6,6 +6,7 @@ import hello.hellospring.repository.MemoryMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +15,10 @@ import java.util.Optional;
 //@Service // @Controller로 하나의 빈 생성한 컨트롤러와 연결
 // 원래는 @Component 로 했음
 // @Component 는 @Service,@Controller 등 포함함
+
+
+@Transactional
+// jpa를 사용하려면 Transaction이 있어야함
 public class MemberService {
 
     // Service 패키지는 회원가입,전체 회원 조회 등 비지니스와 관련된 것들임
