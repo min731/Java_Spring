@@ -61,11 +61,24 @@ public class MemberService {
         // 2번 방법 (한번에 쓸 수도 있음)
         // shif+crtl+alt+t 눌러서 Refactor this 해서 메서드화 시켜도됌
 
-        validateDuplicateMember(member);
+        // AOP
+        // 메서드 시간 측정하기
+        long start = System.currentTimeMillis();
 
-        memberRepository.save(member);
-        return member.getId(); // Id만 반환해주기로 결정
-                               // 같은 이름이 있는 회원이 안된다고 가정
+        try{
+
+            validateDuplicateMember(member);
+
+            memberRepository.save(member);
+            return member.getId(); // Id만 반환해주기로 결정
+            // 같은 이름이 있는 회원이 안된다고 가정
+
+        }finally {
+            long finish = System.currentTimeMillis();
+            long timeMs = finish - start;
+            System.out.println("join = "+ timeMs+"ms");
+        }
+
 
     }
 

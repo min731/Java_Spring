@@ -3,6 +3,7 @@ package hello.hellospring.service;
 //MemberController의 @Controller, 생성자의 @Autowired만 두고
 // 빌드 안될때 , 빈 설정파일 직접 만들기
 
+import hello.hellospring.aop.TimeTraceAop;
 import hello.hellospring.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +17,7 @@ public class SpringConfig {
 
     @Bean
     public MemberService memberService(){
-        return new MemberService(memberRepository());
+        return new MemberService(memberRepository);
     }
 
 
@@ -48,11 +49,13 @@ public class SpringConfig {
     // 웹에서 회원가입하면
     // DB에 남음
 
-    private DataSource dataSource;
+    // Spring Data Jpa 로 바꿈
+    //private final DataSource dataSource;
     @Autowired
-    public SpringConfig(DataSource dataSource, EntityManager em){
-        this.dataSource = dataSource;
-        this.em = em; // jpa는 em만 받으면됌
+    public SpringConfig(MemberRepository memberRepository){
+        //this.dataSource = dataSource;
+        //this.em = em; // jpa는 em만 받으면됌
+        this.memberRepository =memberRepository;
     }
 
 
@@ -70,13 +73,24 @@ public class SpringConfig {
 //        return new JdbcTemplateMemberRepository(dataSource);
 //    }
 
+    //Spring Data Jpa로 바꿔줌
+    //private final EntityManager em;
 
-    private EntityManager em;
+    // Spring Data Jpa
+    private  final MemberRepository memberRepository;
 
+    //@Bean
+    //public MemberRepository memberRepository(){
+    //    return new JpaMemberRepository(em);
+    //}
+
+
+    // AOP 빈 등록
     @Bean
-    public MemberRepository memberRepository(EntityManager em){
-        return new JpaMemberRepository(em);
+    public TimeTraceAop timeTraceAop(){
+        return new TimeTraceAop();
     }
+
 
 }
 // 이렇게 하면 전부 연결됌
